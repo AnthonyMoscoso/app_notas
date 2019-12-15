@@ -121,8 +121,7 @@ public class DialogCreateCategoria extends DialogFragment implements ObtenerCate
             @Override
             public void onClick(View view) {
 
-                obtenerCategorias.isNewCategoria(null);
-                // respuesta.onRespuesta(null);
+                obtenerCategorias.createCategoria(false);
                 dismiss();
             }
         });
@@ -150,7 +149,7 @@ public class DialogCreateCategoria extends DialogFragment implements ObtenerCate
     public void onAttach(Context context){
         super.onAttach(context);
         obtenerCategorias=(ObtenerCategorias)context;
-        // respuesta=(Respuesta)context;
+
 
     }
 
