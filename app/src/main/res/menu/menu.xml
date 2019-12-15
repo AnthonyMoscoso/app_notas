@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Edit"
+        android:id="@+id/itemGuardar"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:visible="true"
+        android:onClick="saveNote"
+        app:showAsAction="always" />
+    <item
+        android:title="Back"
+        android:id="@+id/itemBack"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+
+        android:visible="true"
+        android:onClick="backActivity"
+        app:showAsAction="always" />
+
+</menu>
