@@ -8,22 +8,21 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 
 import com.example.app_notas.Adapters.AdapterCategoria;
-import com.example.app_notas.Interfaces.ObtenerCategorias;
+import com.example.app_notas.Interfaces.ConexionCategorias;
 import com.example.app_notas.Modales.Categorias;
 import com.example.app_notas.R;
 
 import java.util.ArrayList;
 
-public class DialogListCategorias extends DialogFragment implements ObtenerCategorias{
+public class DialogListCategorias extends DialogFragment implements ConexionCategorias {
 
     private ListView listCategorias;
     private Button btnCancelar,btnNewCategoria;
-    private ObtenerCategorias obtenerDatos;
+    private ConexionCategorias obtenerDatos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState){
@@ -44,7 +43,13 @@ public class DialogListCategorias extends DialogFragment implements ObtenerCateg
         listCategorias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                obtenerDatos.GetCategoria(categoriasList.get(i));
+                if(categoriasList.get(i).getNombre().equals("Sin etiqueta")){
+                    obtenerDatos.GetCategoria(null);
+                }
+                else {
+                    obtenerDatos.GetCategoria(categoriasList.get(i));
+                }
+
                 dismiss();
             }
         });
@@ -70,7 +75,7 @@ public class DialogListCategorias extends DialogFragment implements ObtenerCateg
 
     public void onAttach(Context context){
         super.onAttach(context);
-       obtenerDatos=(ObtenerCategorias)context;
+       obtenerDatos=(ConexionCategorias)context;
        // respuesta=(Respuesta)context;
 
     }

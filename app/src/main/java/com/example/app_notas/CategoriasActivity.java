@@ -10,16 +10,16 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 
-public class Categorias_Activity extends AppCompatActivity {
+public class CategoriasActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_categorias_);
+        setContentView(R.layout.activity_categorias);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.btnNewCategoria);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

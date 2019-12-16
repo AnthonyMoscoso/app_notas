@@ -19,14 +19,14 @@ import android.view.View;
 
 import com.example.app_notas.Dialogs.DialogCreateCategoria;
 import com.example.app_notas.Dialogs.DialogListCategorias;
-import com.example.app_notas.Interfaces.ObtenerCategorias;
+import com.example.app_notas.Interfaces.ConexionCategorias;
 import com.example.app_notas.Modales.Categorias;
 import com.example.app_notas.Modales.Notas;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class WriteActivity extends AppCompatActivity implements ObtenerCategorias {
+public class WriteActivity extends AppCompatActivity implements ConexionCategorias {
     private Notas nota;
     ArrayList<Notas> notas= new ArrayList<>();
     ArrayList<Categorias> categoriasArrayList = new ArrayList<>();
@@ -76,6 +76,8 @@ public class WriteActivity extends AppCompatActivity implements ObtenerCategoria
         cate=new Categorias("Eventos", Color.argb(255,67,245,167));
         categoriasArrayList.add(cate);
         cate=new Categorias("Medico", Color.argb(255,67,145,145));
+        categoriasArrayList.add(cate);
+        cate=new Categorias("Sin etiqueta",0);
         categoriasArrayList.add(cate);
     }
 
@@ -145,9 +147,14 @@ public class WriteActivity extends AppCompatActivity implements ObtenerCategoria
     public void GetCategoria(Categorias categorias) {
        cate_obtenida=categorias;
        nota.setCategorias(cate_obtenida);
+
        if(cate_obtenida!=null){
            ImageViewCompat.setImageTintList( imgBtnEtiquetas, ColorStateList.valueOf(nota.getCategorias().getColor()));
            imgBtnEtiquetas.setImageTintMode(PorterDuff.Mode.SRC_IN);
+       }
+       else{
+           ImageViewCompat.setImageTintList( imgBtnEtiquetas, ColorStateList.valueOf(0));
+           imgBtnEtiquetas.setImageTintMode(null);
        }
 
 
@@ -163,8 +170,11 @@ public class WriteActivity extends AppCompatActivity implements ObtenerCategoria
                 dialogListCategorias.show(getSupportFragmentManager(),"Categorias");
             }
             else {
+                Bundle argumentos =new Bundle();
+                argumentos.putParcelableArrayList("Categorias", categoriasArrayList);
                 DialogCreateCategoria dialogCreateCategoria= new DialogCreateCategoria();
-                dialogCreateCategoria.show(getSupportFragmentManager(),"");
+                dialogCreateCategoria.setArguments(argumentos);
+                dialogCreateCategoria.show(getSupportFragmentManager(),"Categorias");
             }
     }
 

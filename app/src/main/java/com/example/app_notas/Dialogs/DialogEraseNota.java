@@ -17,7 +17,7 @@ import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.app_notas.Adapters.AdapterCategoria;
-import com.example.app_notas.Interfaces.ConexionCategorias;
+
 import com.example.app_notas.Interfaces.InterfaceNotas;
 import com.example.app_notas.Modales.Categorias;
 import com.example.app_notas.Modales.Notas;

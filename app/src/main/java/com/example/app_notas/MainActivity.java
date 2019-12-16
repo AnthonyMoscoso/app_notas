@@ -14,17 +14,20 @@ import android.view.*;
 import android.widget.Toast;
 
 import com.example.app_notas.Adapters.AdapterNota;
+import com.example.app_notas.Dialogs.DialogEraseNota;
+import com.example.app_notas.Dialogs.DialogListCategorias;
+import com.example.app_notas.Interfaces.InterfaceNotas;
 import com.example.app_notas.Modales.Categorias;
 import com.example.app_notas.Modales.Notas;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements InterfaceNotas {
 private Button btnNewNote;
 private ListView lvNotes;
 private EditText edtxtSearch;
-ArrayList<Notas>notas= new ArrayList<>();
+ArrayList<Notas>notasArrayList= new ArrayList<>();
 private Notas nota;
 public  Button del;
 private static final int CODE=1;
@@ -49,9 +52,9 @@ private Context context;
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(context,WriteActivity.class);
                 Bundle bundle = new Bundle();
-                Notas seleccionada = notas.get(i);
+                Notas seleccionada = notasArrayList.get(i);
                 bundle.putParcelable("Nota",seleccionada);
-                bundle.putParcelableArrayList("notas",notas);
+                bundle.putParcelableArrayList("notas",notasArrayList);
                 intent.putExtras(bundle);
                 startActivityForResult(intent,CODE);
 
@@ -63,39 +66,42 @@ private Context context;
         lvNotes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(context,"quieres borrarme",Toast.LENGTH_LONG).show();
-                del.setVisibility(View.VISIBLE);
+                Bundle argumentos =new Bundle();
+                argumentos.putParcelable("Nota", notasArrayList.get(i));
+                DialogEraseNota dialogEraseNota=new DialogEraseNota();
+                dialogEraseNota.setArguments(argumentos);
+                dialogEraseNota.show(getSupportFragmentManager(),"Nota");
                 return true;
             }
         });
 
     }
     protected  void addNotesToList(){
-        adapterNota=new AdapterNota(this,notas);
+        adapterNota=new AdapterNota(this,notasArrayList);
         lvNotes.setAdapter(adapterNota);
     }
     protected void GetNotes(){
 
         Date date=new Date();
         nota= new Notas("Nota 1","Hola soys nota 1",date,null);
-        notas.add(nota);
+        notasArrayList.add(nota);
         nota= new Notas("Nota 2","Hola soys nota 2",date,null);
-        notas.add(nota);
+        notasArrayList.add(nota);
         Categorias dd = new Categorias("deporte",Color.argb(34,34,34,34));
         nota= new Notas("Nota 3","Hola soys nota 3",date,dd);
-        notas.add(nota);
+        notasArrayList.add(nota);
         nota= new Notas("Nota 4","Hola soys nota 4",date,null);
-        notas.add(nota);
+        notasArrayList.add(nota);
         Categorias deporte = new Categorias("deporte",Color.argb(255,45,56,200));
         nota= new Notas("Nota 5","Hola soys nota 5",date,deporte);
-        notas.add(nota);
+        notasArrayList.add(nota);
 
     }
 
     public void createNewNota(View view){
         Intent intent = new Intent(this,WriteActivity.class);
         Bundle bundle= new Bundle();
-        bundle.putParcelableArrayList("notas",notas);
+        bundle.putParcelableArrayList("notas",notasArrayList);
         startActivityForResult(intent,CODE);
     }
 
@@ -111,5 +117,23 @@ private Context context;
             }
         }
         //GetNotes();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_principal,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    public void goToCategoriasActivity(MenuItem menuItem){
+        Intent intent=new Intent(this,CategoriasActivity.class);
+        startActivity(intent);
+        Toast.makeText(this,"cerdos",Toast.LENGTH_LONG).show();
+    }
+    @Override
+    public void ObtenerNota(Notas notas) {
+        if(notas!=null){
+            notasArrayList.remove(notas);
+            addNotesToList();
+        }
     }
 }
