@@ -20,7 +20,9 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_categorias" />
+    <include
+        android:id="@+id/lvCategorias"
+        layout="@layout/content_categorias" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
