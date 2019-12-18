@@ -7,18 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.widget.ImageViewCompat;
 
+import com.example.app_notas.Interfaces.ConexionCategorias;
 import com.example.app_notas.Modales.Categorias;
 import com.example.app_notas.R;
 
 import java.util.ArrayList;
 
-public class AdapterCategoria extends ArrayAdapter {
+public class AdapterCategoria extends ArrayAdapter  {
     private ArrayList<Categorias>arrayCategorias=new ArrayList<>();
     public AdapterCategoria( Context context, ArrayList<Categorias>categorias) {
         super(context, R.layout.adapter_categorias,categorias);
@@ -62,9 +64,12 @@ public class AdapterCategoria extends ArrayAdapter {
     }
 
 
+
+
     public static class Holder {
         ImageView imgvCategoria;
         TextView txtNombre;
+
 
     }
 }

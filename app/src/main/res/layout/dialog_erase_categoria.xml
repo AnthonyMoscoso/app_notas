@@ -18,7 +18,7 @@
             android:orientation="vertical"></LinearLayout>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/txtTituloDialog"
             android:layout_width="match_parent"
             android:layout_height="66dp"
             android:layout_marginBottom="20dp"

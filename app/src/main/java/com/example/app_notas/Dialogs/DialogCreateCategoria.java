@@ -18,6 +18,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.app_notas.Interfaces.ConexionCategorias;
 import com.example.app_notas.Modales.Categorias;
+import com.example.app_notas.Modales.Notas;
 import com.example.app_notas.R;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -113,16 +114,11 @@ public class DialogCreateCategoria extends DialogFragment implements ConexionCat
 
 
 
-
-
-
-
-
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                conexionCategorias.createCategoria(false);
+                conexionCategorias.isWantcreateCategoria(false);
                 dismiss();
             }
         });
@@ -167,12 +163,17 @@ public class DialogCreateCategoria extends DialogFragment implements ConexionCat
     }
 
     @Override
-    public void createCategoria(boolean wantCreate) {
+    public void isWantcreateCategoria(boolean wantCreate) {
 
     }
 
     @Override
     public void isNewCategoria(Categorias categorias) {
+
+    }
+
+    @Override
+    public void ObtenerNota(Notas notas) {
 
     }
 }

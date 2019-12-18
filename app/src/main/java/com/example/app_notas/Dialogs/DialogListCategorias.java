@@ -14,6 +14,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.app_notas.Adapters.AdapterCategoria;
 import com.example.app_notas.Interfaces.ConexionCategorias;
 import com.example.app_notas.Modales.Categorias;
+import com.example.app_notas.Modales.Notas;
 import com.example.app_notas.R;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class DialogListCategorias extends DialogFragment implements ConexionCate
             @Override
             public void onClick(View view) {
                 dismiss();
-            obtenerDatos.createCategoria(true);
+            obtenerDatos.isWantcreateCategoria(true);
 
             }
         });
@@ -86,12 +87,17 @@ public class DialogListCategorias extends DialogFragment implements ConexionCate
     }
 
     @Override
-    public void createCategoria(boolean wantCreate) {
+    public void isWantcreateCategoria(boolean wantCreate) {
 
     }
 
     @Override
     public void isNewCategoria(Categorias categorias) {
+
+    }
+
+    @Override
+    public void ObtenerNota(Notas notas) {
 
     }
 }

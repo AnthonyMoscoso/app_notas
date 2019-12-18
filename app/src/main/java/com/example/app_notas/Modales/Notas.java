@@ -14,8 +14,15 @@ public class Notas implements Parcelable{
     private Date date;
     private Categorias categorias;
 
-    public Notas(String titulo, String contenido, Date date, Categorias categorias) {
+    public Notas(int id, String titulo, String contenido, Date date, Categorias categorias) {
+        this.id = id;
+        this.titulo = titulo;
+        this.contenido = contenido;
+        this.date = date;
+        this.categorias = categorias;
+    }
 
+    public Notas(String titulo, String contenido, Date date, Categorias categorias) {
         this.titulo = titulo;
         this.contenido = contenido;
         this.date = date;
